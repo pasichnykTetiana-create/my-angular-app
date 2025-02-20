@@ -66,6 +66,7 @@ export class MaterialCardComponent {
   });
 
   submitInput: any = {};
+  isSambit:boolean = true;
 
   onSubmit() {
     const formData = this.profileForm.value;
@@ -76,6 +77,7 @@ export class MaterialCardComponent {
     }
 
     this.submitInput = formData;
+    this.isSambit = false;
     console.log(this.submitInput);
   }
 }

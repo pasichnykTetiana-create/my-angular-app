@@ -1,3 +1,4 @@
+@if(isSambit){
 <div class="example-container">
   <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
     <div class="example-form-fields">
@@ -62,11 +63,11 @@
     </div>
   </form>
 </div>
-
+} @else{
 <div class="saved-data">
-  <h3>Ihre Angaben:</h3>
-  <p><strong>Vorname:</strong> {{ submitInput?.vorName }}</p>
-  <p><strong>Nachname:</strong> {{ submitInput?.nachName }}</p>
-  <p><strong>Stadt:</strong> {{ submitInput?.stadt }}</p>
-  <p><strong>Zeit:</strong> {{ submitInput?.zeit }}</p>
-</div>
+  <h3 class="save-data__h3">Ihre Angaben:</h3>
+  <p>Vorname: <strong class="save-data__field" >{{ submitInput?.vorName }}</strong></p>
+  <p>Nachname: <strong class="save-data__field">{{ submitInput?.nachName }}</strong></p>
+  <p>Stadt: <strong class="save-data__field">{{ submitInput?.stadt }}</strong> </p>
+  <p>Zeit: <strong class="save-data__field">{{ submitInput?.zeit }}</strong></p>
+</div>}
