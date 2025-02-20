@@ -1,27 +1,42 @@
-
-
 <div class="example-container">
-
   <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
-
-
     <div class="example-form-fields">
       <mat-form-field>
         <mat-label>Choose a date</mat-label>
-        <input matInput [matDatepicker]="picker"  formControlName="zeit">
+        <input matInput [matDatepicker]="picker" formControlName="zeit" />
         <mat-hint>MM/DD/YYYY</mat-hint>
-        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker-toggle
+          matIconSuffix
+          [for]="picker"
+        ></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
-      <mat-form-field [hideRequiredMarker]="hideRequired()" [floatLabel]="floatLabel()">
-        <input matInput placeholder="Vorname" required type="text" formControlName="vorName"/>
+      <mat-form-field
+        [hideRequiredMarker]="hideRequired()"
+        [floatLabel]="floatLabel()"
+      >
+        <input
+          matInput
+          placeholder="Vorname"
+          required
+          type="text"
+          formControlName="vorName"
+        />
       </mat-form-field>
 
       <mat-form-field [floatLabel]="floatLabel()">
-        <input matInput placeholder="Nachname" type="text" formControlName="nachName" />
+        <input
+          matInput
+          placeholder="Nachname"
+          type="text"
+          formControlName="nachName"
+        />
       </mat-form-field>
 
-      <mat-form-field [hideRequiredMarker]="hideRequired()" [floatLabel]="floatLabel()">
+      <mat-form-field
+        [hideRequiredMarker]="hideRequired()"
+        [floatLabel]="floatLabel()"
+      >
         <mat-label><strong>Stadt</strong></mat-label>
         <mat-select required formControlName="stadt">
           <mat-option value="">-- None --</mat-option>
@@ -40,21 +55,18 @@
       </div>
 
       <div class="example-button-row">
-        <button type="submit" class="mat-raised-button" mat-raised-button>Senden</button>
+        <button type="submit" class="mat-raised-button" mat-raised-button>
+          Senden
+        </button>
       </div>
-
     </div>
   </form>
 </div>
 
-
-<div  class="saved-data">
+<div class="saved-data">
   <h3>Ihre Angaben:</h3>
-  <p><strong>Vorname:</strong> {{submitInput?.vorName}}</p>
-  <p><strong>Nachname:</strong> {{submitInput?.nachName}} </p>
-  <p><strong>Stadt:</strong> {{submitInput?.stadt}}</p>
-  <p><strong>Zeit:</strong> {{submitInput?.zeit}} </p>
+  <p><strong>Vorname:</strong> {{ submitInput?.vorName }}</p>
+  <p><strong>Nachname:</strong> {{ submitInput?.nachName }}</p>
+  <p><strong>Stadt:</strong> {{ submitInput?.stadt }}</p>
+  <p><strong>Zeit:</strong> {{ submitInput?.zeit }}</p>
 </div>
-
-
-

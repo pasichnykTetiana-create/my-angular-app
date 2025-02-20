@@ -1,7 +1,15 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+} from '@angular/forms';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { FloatLabelType, MatFormFieldModule } from '@angular/material/form-field';
+import {
+  FloatLabelType,
+  MatFormFieldModule,
+} from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatRadioModule } from '@angular/material/radio';
@@ -28,14 +36,13 @@ import { MatDividerModule } from '@angular/material/divider';
     MatToolbarModule,
     MatNativeDateModule,
     MatDatepickerModule,
-    MatDividerModule
+    MatDividerModule,
   ],
   templateUrl: './material-card.component.html',
   styleUrls: ['./material-card.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MaterialCardComponent {
-
   readonly hideRequiredControl = new FormControl(true);
   readonly floatLabelControl = new FormControl('always' as FloatLabelType);
   readonly options = inject(FormBuilder).group({
@@ -43,12 +50,13 @@ export class MaterialCardComponent {
     floatLabel: this.floatLabelControl,
   });
 
-  protected readonly hideRequired = toSignal(this.hideRequiredControl.valueChanges);
-  protected readonly floatLabel = toSignal(
-    this.floatLabelControl.valueChanges.pipe(map(v => v || 'always')),
-    {initialValue: 'always'}
+  protected readonly hideRequired = toSignal(
+    this.hideRequiredControl.valueChanges
   );
-
+  protected readonly floatLabel = toSignal(
+    this.floatLabelControl.valueChanges.pipe(map((v) => v || 'always')),
+    { initialValue: 'always' }
+  );
 
   profileForm = new FormGroup({
     vorName: new FormControl(''),
@@ -57,13 +65,10 @@ export class MaterialCardComponent {
     zeit: new FormControl(''),
   });
 
-
-  submitInput: any = {}
-
+  submitInput: any = {};
 
   onSubmit() {
     const formData = this.profileForm.value;
-
 
     if (formData.zeit) {
       const dateObj = new Date(formData.zeit);
@@ -73,5 +78,4 @@ export class MaterialCardComponent {
     this.submitInput = formData;
     console.log(this.submitInput);
   }
-
 }
