@@ -3,7 +3,6 @@ import { RouterOutlet } from '@angular/router';
 import { MaterialCardComponent } from '../components/material-card/material-card.component';
 
 
-
 @Component({
   selector: 'app-root',
   imports: [RouterOutlet, MaterialCardComponent],
