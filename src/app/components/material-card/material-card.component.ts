@@ -1,5 +1,5 @@
 import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {FloatLabelType, MatFormFieldModule} from '@angular/material/form-field';
 import {MatIconModule} from '@angular/material/icon';
@@ -13,7 +13,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {map} from 'rxjs/operators';
 import {toSignal} from '@angular/core/rxjs-interop';
 import {MatDividerModule} from '@angular/material/divider';
-import {SubmitButtonComponent} from '../submit-button/submit-button.component'; // Импортируем компонент кнопки
+import {SubmitButtonComponent} from '../submit-button/submit-button.component';
 
 @Component({
   selector: 'app-material-card',
@@ -30,10 +30,12 @@ import {SubmitButtonComponent} from '../submit-button/submit-button.component'; 
     MatNativeDateModule,
     MatDatepickerModule,
     MatDividerModule,
-    SubmitButtonComponent
+    SubmitButtonComponent,
+
   ],
   templateUrl: './material-card.component.html',
   styleUrls: ['./material-card.component.scss'],
+  standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MaterialCardComponent {
@@ -44,12 +46,14 @@ export class MaterialCardComponent {
     hideRequired: this.hideRequiredControl,
     floatLabel: this.floatLabelControl,
   });
+
   profileForm = new FormGroup({
-    vorName: new FormControl(''),
-    nachName: new FormControl(''),
-    stadt: new FormControl(''),
-    zeit: new FormControl(''),
+    vorName: new FormControl('', Validators.required),
+    nachName: new FormControl('', Validators.required),
+    stadt: new FormControl('', Validators.required),
+    zeit: new FormControl('', Validators.required),
   });
+
   submitInput: any = {};
   isSambit: boolean = true;
   protected readonly hideRequired = toSignal(
@@ -61,7 +65,9 @@ export class MaterialCardComponent {
   );
 
   onSubmit() {
+
     const formData = this.profileForm.value;
+
 
     if (formData.zeit) {
       const dateObj = new Date(formData.zeit);
