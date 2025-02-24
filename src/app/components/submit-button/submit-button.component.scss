@@ -1,0 +1,15 @@
+button {
+  font-family: inherit;
+  font-size: inherit;
+  width: 160px;
+  padding: 12px;
+  border-radius: 10px;
+  background: #4c4549;
+  margin-top: 40px;
+  color: #d7c8cf;
+  cursor: pointer;
+}
+
+button:hover {
+  background: rgba(76, 69, 73, 0.8);
+}

@@ -1,11 +1,10 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { MaterialCardComponent } from '../components/material-card/material-card.component';
+import {Component} from '@angular/core';
+import {MaterialCardComponent} from './components/material-card/material-card.component';
 
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, MaterialCardComponent],
+  imports: [MaterialCardComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
