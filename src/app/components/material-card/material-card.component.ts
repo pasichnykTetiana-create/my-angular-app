@@ -14,6 +14,7 @@ import {map} from 'rxjs/operators';
 import {toSignal} from '@angular/core/rxjs-interop';
 import {MatDividerModule} from '@angular/material/divider';
 import {SubmitButtonComponent} from '../submit-button/submit-button.component';
+import {DatePipe} from '@angular/common';
 
 @Component({
   selector: 'app-material-card',
@@ -31,12 +32,13 @@ import {SubmitButtonComponent} from '../submit-button/submit-button.component';
     MatDatepickerModule,
     MatDividerModule,
     SubmitButtonComponent,
-
+    DatePipe,
   ],
   templateUrl: './material-card.component.html',
   styleUrls: ['./material-card.component.scss'],
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [DatePipe]
 })
 export class MaterialCardComponent {
   readonly hideRequiredControl = new FormControl(true);
@@ -52,30 +54,25 @@ export class MaterialCardComponent {
     nachName: new FormControl('', Validators.required),
     stadt: new FormControl('', Validators.required),
     zeit: new FormControl('', Validators.required),
+    consentGiven: new FormControl('yes', Validators.required),
   });
 
   submitInput: any = {};
   isSambit: boolean = true;
-  protected readonly hideRequired = toSignal(
-    this.hideRequiredControl.valueChanges
-  );
+  protected readonly hideRequired = toSignal(this.hideRequiredControl.valueChanges);
   protected readonly floatLabel = toSignal(
     this.floatLabelControl.valueChanges.pipe(map((v) => v || 'always')),
     {initialValue: 'always'}
   );
 
+  constructor(private datePipe: DatePipe) {
+  }
+
   onSubmit() {
-
     const formData = this.profileForm.value;
-
-
-    if (formData.zeit) {
-      const dateObj = new Date(formData.zeit);
-      formData.zeit = dateObj.toLocaleDateString('de-Uk');
-    }
-
-    this.submitInput = formData;
+    this.submitInput = {...formData};
     this.isSambit = false;
+
     console.log(this.submitInput);
   }
 }
