@@ -1,4 +1,3 @@
-<button (click)="onClick()" class="mat-raised-button" mat-raised-button>
-  Senden
+<button (click)="onClick()" [disabled]="disabled" class="mat-raised-button" mat-raised-button>
+  {{ disabled ? 'Bestätigen Sie Ihre Zustimmung' : 'Senden' }}
 </button>
-
